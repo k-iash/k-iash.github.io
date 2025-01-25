@@ -1,5 +1,96 @@
 <html>
+<head>
+/* img */
+
+.slider{
+    width: 100%;
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    padding-top: 50px;
+}
+
+.slider-item{
+    position: absolute;
+    width: 100%;
+    opacity: 0;
+    z-index: 0;
+    transition:all 0.5s ease-in-out; /*입체적으로 구현*/
+    transform: scale(0.9);
+}
+
+
+.main_pic {
+    width: 100%;
+    height: 480px;
+    object-fit: cover;
+}
+
+.showing{
+    z-index: 1; /* 현재 순서의 슬라이드만 보이게 하기 위한 동작*/
+    opacity: 1;
+    transform: none;
+}
+
+<script>
+
+window.onload = function() {
+
+  const SHOWING_CLASS = "showing";
+  const firstSlide = document.querySelector(".slider-item:first-child");
+  const lastSlide = document.querySelector(".slider-item:last-child");
+
+  /* slide() 함수 설명 
+  1. 다음 슬라이드로 넘어가기 위해 현재 창을 지우고, 다음 슬라이드(next sibiling)불러준다.
+  2. next sibiling이 없는 마지막 순서의 슬라이드 다음은 첫번째 슬라이드로 불러준다. */
+
+  function slide() {
+    const currentSlide = document.querySelector('.${SHOWING_CLASS}');
+    if (currentSlide){
+        currentSlide.classList.remove(SHOWING_CLASS); 
+        const nextSlide = currentSlide.nextElementSibling;
+        if(nextSlide) {
+            nextSlide.classList.add(SHOWING_CLASS);
+        }else{
+            firstSlide.classList.add(SHOWING_CLASS);
+        }
+    }else{
+        firstSlide.classList.add(SHOWING_CLASS);
+    }
+
+  }
+
+
+  slide();
+  setInterval(slide,3500); // 3.5초마다 슬라이드 부르도록 설정
+
+  
+}
+  
+  
+</script>
+  
+</head>
+
 <body>
 <h1>The Institute for Aging Society and Housing (IASH)</h1>
+
+      <!--background slider -->
+    <div class="slider">
+      <div class ="slider-item">
+        <img src ="main1.png" class = 'main_pic' >
+      </div>
+      <div class ="slider-item">
+        <img src ="main2.png" class = 'main_pic' >
+      </div>
+      <div class ="slider-item">
+        <img src ="main3.png" class= "main_pic" >
+      </div>
+    </div>
+    
+    <footer class = "message">
+      <p> Great and Wonderful Life</p>
+    </footer>
+  
 </body>
 </html>
