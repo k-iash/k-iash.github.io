@@ -52,7 +52,7 @@ window.onload = function() {
   2. next sibiling이 없는 마지막 순서의 슬라이드 다음은 첫번째 슬라이드로 불러준다. */
 
   function slide() {
-    const currentSlide = document.querySelector('.${SHOWING_CLASS}');
+    const currentSlide = document.querySelector('.showing');
     if (currentSlide){
         currentSlide.classList.remove(SHOWING_CLASS); 
         const nextSlide = currentSlide.nextElementSibling;
